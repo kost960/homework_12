@@ -1,6 +1,6 @@
-towns = input('Введите города через пробел: ')
+list_towns = input('Введите города через пробел: ')
 
-split_towns = towns.split()
+split_towns = list_towns.split()
 winner_position = 0
 for i in range(len(split_towns) - 1):
     if split_towns[i].lower()[-1] not in 'ъыь' and split_towns[i].lower()[-1] == split_towns[i + 1].lower()[0]:
