@@ -11,4 +11,4 @@ def get_symbol_count(string):
     return count
 
 
-print(f'Кол-во различных букв: {get_symbol_count('Сделал дело - гуляй смело')}')
+print(f'Кол-во различных букв: {get_symbol_count(input('Введите текст: '))}')

@@ -1,4 +1,4 @@
-string = 'Сделал дело - делай дело'
+string = input('Введите текст: ')
 
 split_string = string.split()
 for word in split_string:

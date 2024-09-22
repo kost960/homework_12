@@ -7,7 +7,7 @@ def check_identical_letters(word):
     return True
 
 
-string = 'Сделал дело - гуляй смело!'
+string = input('Введите текст: ')
 
 split_string = string[:-1].split()
 for i in range(1, len(split_string)):

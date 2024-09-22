@@ -13,4 +13,4 @@ def get_symbol_count(string):
     return max_count
 
 
-print(f'Максимальное кол-во идущих подряд символов: {get_symbol_count('Сделал дело - гуляй смело')}')
+print(f'Максимальное кол-во идущих подряд символов: {get_symbol_count(input('Введите текст: '))}')

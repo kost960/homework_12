@@ -1,4 +1,4 @@
-string = 'Сделал дело - гуляй смело'
+string = input('Введите текст: ')
 
 split_string = string.split()
 length = len(split_string)

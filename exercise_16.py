@@ -1,16 +1,14 @@
 def check(input_text):
     stack = []
-    brackets_open = ('(', '{', '[')
-    brackets_closed = (')', '}', ']')
     for symbol in input_text:
-        if symbol in brackets_open:
+        if symbol == '(':
             stack.append(symbol)
-        if symbol in brackets_closed:
+
+        if symbol == ')':
             if len(stack) == 0:
                 return False
-            index = brackets_closed.index(symbol)
-            open_bracket = brackets_open[index]
-            if stack[-1] == open_bracket:
+
+            if stack[-1] == '(':
                 stack.pop(-1)
             else:
                 return False
@@ -21,4 +19,4 @@ def check(input_text):
     return False
 
 
-print(check('Я устал (очень)'))
+print('Верно' if check('Я устал (очень)') else 'Неверно')

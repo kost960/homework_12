@@ -1,4 +1,4 @@
-string = 'Сделал дело - гуляй смело'
+string = input('Введите текст: ')
 
 count = 0
 max_count = 0

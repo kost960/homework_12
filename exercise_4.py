@@ -1,4 +1,4 @@
-string = 'Сделал дело - гуляй смело'
+string = input('Введите текст: ')
 
 for e in string:
     if string.count(e) == 3:
