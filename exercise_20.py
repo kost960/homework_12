@@ -48,9 +48,9 @@ d_hundreds = {
 }
 
 d_large = {
-    1000: ['тысяча', 'тысяч', 'тысячи'],
-    10 ** 6: ['миллион', 'миллионов', 'миллиона'],
-    10 ** 9: ['миллиард', 'миллиардов', 'миллиарда'],
+    1000: ['одна тысяча', 'тысяч', 'тысячи'],
+    10 ** 6: ['один миллион', 'миллионов', 'миллиона'],
+    10 ** 9: ['один миллиард', 'миллиардов', 'миллиарда'],
 }
 
 
@@ -59,17 +59,42 @@ def number_to_words(x):
         return d_units[0]
 
     parts = []
+    previous_x = x
 
-    for value in sorted(d_large.keys(), reverse=True):
-        if x >= value:
-            num = x // value
-            x %= value
-            if num % 10 == 1 and num % 100 != 11:
-                parts.append(number_to_words(num) + ' ' + d_large[value][0])
-            elif 2 <= num % 10 <= 4 and not (2 <= num % 100 <= 4):
-                parts.append(number_to_words(num) + ' ' + d_large[value][2])
-            else:
-                parts.append(number_to_words(num) + ' ' + d_large[value][1])
+    billions = x // 10 ** 9
+    if billions > 0:
+        if billions == 1 and billions != 11:
+            parts.append(d_large[10 ** 9][0])
+        elif 2 <= billions <= 4:
+            parts.append(number_to_words(billions) + ' ' + d_large[10**9][2])
+        else:
+            parts.append(number_to_words(billions) + ' ' + d_large[10**9][1])
+
+    x %= 10 ** 9
+
+    millions = x // 10 ** 6
+    if millions > 0:
+        if millions == 1 and millions != 11:
+            parts.append(d_large[10 ** 6][0])
+        elif 2 <= billions <= 4:
+            parts.append(number_to_words(millions) + ' ' + d_large[10 ** 6][2])
+        else:
+            parts.append(number_to_words(millions) + ' ' + d_large[10 ** 6][1])
+
+    x %= 10 ** 6
+
+    thousands = x // 1000
+    if thousands > 0:
+        if thousands == 1 and thousands != 11:
+            parts.append(d_large[1000][0])
+        elif thousands % 10 == 1 and thousands != 11:
+            parts.append(number_to_words(thousands) + ' ')
+        elif 2 <= thousands <= 4:
+            parts.append(number_to_words(thousands) + ' ' + d_large[1000][2])
+        else:
+            parts.append(number_to_words(thousands) + ' ' + d_large[1000][1])
+
+    x %= 1000
 
     if x >= 100:
         z = (x // 100) * 100
@@ -80,14 +105,18 @@ def number_to_words(x):
         z = (x // 10) * 10
         parts.append(d_tens[z])
         x %= 10
-    elif x >= 10:
+
+    if x >= 10:
         parts.append(d_teens[x])
         x = 0
 
     if x > 0:
-        parts.append(d_units[x])
+        if previous_x % 10 == 1 and 1000 <= x <= 999999:
+            parts.append(d_large[1000][0])
+        else:
+            parts.append(d_units[x])
 
     return ' '.join(parts).strip()
 
 
-print(number_to_words(121124000))
+print(number_to_words(451000))
