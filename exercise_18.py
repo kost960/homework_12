@@ -14,8 +14,7 @@ def justify_text(input_text, input_line_length):
         current_line.append(word)
         current_length += len(word)
 
-    if current_line:
-        lines.append(' '.join(current_line))
+    lines.append(' '.join(current_line))
 
     return '\n'.join(lines)
 

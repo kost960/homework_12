@@ -1,10 +1,10 @@
 def get_expression_value(input_expression):
     input_expression = input_expression.replace(' ', '')
 
-    actions = {'+': 1,
-               '-': 1,
-               '*': 2,
-               '/': 2
+    actions = {'+': 0,
+               '-': 0,
+               '*': 1,
+               '/': 1
                }
 
     def take_action(operators, values):
